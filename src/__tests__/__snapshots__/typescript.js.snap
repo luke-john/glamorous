@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Typescript expected failures 1`] = `
+"yarn test:ts v0.24.6
+$ (tsc -p ./tsconfig.json && rimraf test-ts) || rimraf test-ts 
+test/glamorous-should-fail.tsx(16,3): error TS2345: Argument of type '{ fillRule: \\"cat\\"; }' is not assignable to parameter of type 'Partial<SVGProperties>'.
+  Types of property 'fillRule' are incompatible.
+    Type '\\"cat\\"' is not assignable to type '\\"nonzero\\" | \\"evenodd\\" | \\"inherit\\" | undefined'.
+test/glamorous-should-fail.tsx(29,3): error TS2345: Argument of type '() => { fillRule: \\"cat\\"; }' is not assignable to parameter of type 'Partial<SVGProperties>'.
+  Index signature is missing in type '() => { fillRule: \\"cat\\"; }'.
+test/glamorous-should-fail.tsx(43,3): error TS2345: Argument of type '{ float: \\"cat\\"; }' is not assignable to parameter of type 'Partial<CSSProperties>'.
+  Types of property 'float' are incompatible.
+    Type '\\"cat\\"' is not assignable to type '\\"left\\" | \\"right\\" | \\"none\\" | \\"initial\\" | \\"inherit\\" | \\"unset\\" | \\"inline-start\\" | \\"inline-end\\" | und...'.
+test/glamorous-should-fail.tsx(55,3): error TS2345: Argument of type '() => { float: \\"cat\\"; }' is not assignable to parameter of type 'Partial<CSSProperties>'.
+  Index signature is missing in type '() => { float: \\"cat\\"; }'.
+test/glamorous-should-fail.tsx(71,3): error TS2345: Argument of type '{ fillRule: \\"cat\\"; }' is not assignable to parameter of type 'Partial<CSSProperties>'.
+  Types of property 'fillRule' are incompatible.
+    Type '\\"cat\\"' is not assignable to type '\\"nonzero\\" | \\"evenodd\\" | \\"initial\\" | \\"inherit\\" | \\"unset\\" | undefined'.
+test/glamorous-should-fail.tsx(77,3): error TS2345: Argument of type '() => { fillRule: \\"cat\\"; }' is not assignable to parameter of type 'Partial<CSSProperties>'.
+  Index signature is missing in type '() => { fillRule: \\"cat\\"; }'.
+test/glamorous-should-fail.tsx(83,3): error TS2345: Argument of type '{ float: \\"cat\\"; }' is not assignable to parameter of type 'Partial<CSSProperties>'.
+  Types of property 'float' are incompatible.
+    Type '\\"cat\\"' is not assignable to type '\\"left\\" | \\"right\\" | \\"none\\" | \\"initial\\" | \\"inherit\\" | \\"unset\\" | \\"inline-start\\" | \\"inline-end\\" | und...'.
+test/glamorous-should-fail.tsx(89,3): error TS2345: Argument of type '() => { float: \\"cat\\"; }' is not assignable to parameter of type 'Partial<CSSProperties>'.
+  Index signature is missing in type '() => { float: \\"cat\\"; }'."
+`;

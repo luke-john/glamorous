@@ -64,12 +64,15 @@ interface DividerInsideDividerProps {
   color: string;
 };
 
+type DividerInsideDividerTheme = { main: { color: string; } }
+
+
 // component styles
 const DividerInsideDivider = glamorous(Divider)(
   {
-    "fontSize": "10px",
+    fontSize: "10px",
   },
-  (props, theme: { main: { color: string; } }) => ({
+  (props, theme: DividerInsideDividerTheme) => ({
     "color": theme.main.color,
   }),
 );

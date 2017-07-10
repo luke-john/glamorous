@@ -3,24 +3,28 @@
 // Definitions by: Kok Sam <https://github.com/sammkj>
 
 import * as React from 'react'
+
 import {
-  HTMLGlamorousInterface,
-  SVGGlamorousInterface,
-} from './element-interfaces'
+  HTMLComponentFactory,
+  SVGComponentFactory,
+} from './built-in-component-factories'
 import {
-  StyledFunction,
   GlamorousComponent,
   ExtraGlamorousProps,
-} from './styled-function'
+} from './glamorous-component'
+import {
+  GlamorousComponentFactory,
+} from './component-factory'
 import { CSSProperties } from './css-properties'
+import { SVGProperties } from './svg-properties'
 
 export {
   CSSProperties,
   ExtraGlamorousProps,
   GlamorousComponent,
-  HTMLGlamorousInterface,
-  StyledFunction,
-  SVGGlamorousInterface,
+  HTMLComponentFactory,
+  GlamorousComponentFactory,
+  SVGComponentFactory,
 }
 
 export interface GlamorousOptions {
@@ -35,11 +39,15 @@ export interface Config {
   useDisplayNameInClassName: boolean
 }
 
-export interface GlamorousInterface extends HTMLGlamorousInterface, SVGGlamorousInterface {
-  <P>(
-    component:Component<P>,
+export interface GlamorousInterface extends HTMLComponentFactory, SVGComponentFactory {
+  <Props>(
+    component:Component<Props>,
     options?: GlamorousOptions,
-  ): StyledFunction<P, CSSProperties | React.SVGAttributes<any>>
+  ): GlamorousComponentFactory<Props, CSSProperties>
+  <Props>(
+    component:Component<Props>,
+    options?: GlamorousOptions,
+  ): GlamorousComponentFactory<Props, SVGProperties>
 
   Div: React.StatelessComponent<CSSProperties & ExtraGlamorousProps>
   Svg: React.StatelessComponent<React.SVGAttributes<any> & ExtraGlamorousProps>
