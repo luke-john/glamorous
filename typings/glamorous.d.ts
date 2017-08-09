@@ -23,6 +23,10 @@ import {
   GlamorousComponentFactoryCssOverides,
 } from './component-factory'
 import {
+  HTMLDomTagComponentFactories,
+  SVGDomTagComponentFactories,
+} from './dom-tag-component-factories'
+import {
   CSSProperties,
   CSSPropertiesCompleteSingle,
   CSSPropertiesComplete,
@@ -125,34 +129,6 @@ export interface GlamorousInterface extends HTMLComponentFactory, SVGComponentFa
     options?: PropsAreCssOverridesGlamorousOptions<ExternalProps, Context, DefaultProps>,
   ): GlamorousComponentFactoryCssOverides<ExternalProps, SVGProperties, DefaultProps>
 
-  // ## create a component factory from a dom tag
-
-  <ExternalProps, Context = object, DefaultProps extends object = object>(
-    component: HTMLKey,
-    options?: Partial<GlamorousOptions<ExternalProps, Context, DefaultProps>>,
-  ): KeyGlamorousComponentFactory<
-    HTMLComponentFactory[HTMLKey], CSSProperties, ExternalProps, DefaultProps
-  >
-  <ExternalProps, Context = object, DefaultProps extends object = object>(
-    component: SVGKey,
-    options?: Partial<GlamorousOptions<ExternalProps, Context, DefaultProps>>,
-  ): KeyGlamorousComponentFactory<
-    SVGComponentFactory[SVGKey], SVGProperties, ExternalProps, DefaultProps
-  >
-
-  <ExternalProps, Context = object, DefaultProps extends object = object>(
-    component: HTMLKey,
-    options?: PropsAreCssOverridesGlamorousOptions<ExternalProps, Context, DefaultProps>,
-  ): KeyGlamorousComponentFactoryCssOverides<
-    HTMLComponentFactory[HTMLKey], CSSProperties, ExternalProps, DefaultProps
-  >
-  <ExternalProps, Context = object, DefaultProps extends object = object>(
-    component: SVGKey,
-    options?: PropsAreCssOverridesGlamorousOptions<ExternalProps, Context, DefaultProps>,
-  ): KeyGlamorousComponentFactoryCssOverides<
-    SVGComponentFactory[SVGKey], SVGProperties, ExternalProps, DefaultProps
-  >
-
   Div: React.StatelessComponent<CSSProperties & ExtraGlamorousProps>
   Svg: React.StatelessComponent<SVGProperties & ExtraGlamorousProps>
 }
@@ -176,5 +152,7 @@ export function withTheme<Props extends { theme: any }>(
 >
 
 declare const glamorous: GlamorousInterface
+  & HTMLDomTagComponentFactories
+  & SVGDomTagComponentFactories
 
 export default glamorous
