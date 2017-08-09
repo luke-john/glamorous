@@ -4,10 +4,9 @@ import {
   SVGProperties,
   SVGPropertiesCompleteSingle, SVGPropertiesComplete, SVGPropertiesLossy,
 
-  GlamorousComponent,
+  ComponentGlamorous,
+  ComponentFactoryGlamorous,
   ExtraGlamorousProps,
-  WithComponent,
-  WithProps,
 
   StyleFunction,
   StyleArray,

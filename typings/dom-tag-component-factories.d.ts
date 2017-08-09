@@ -1,0 +1,196 @@
+import { SVGProperties } from './svg-properties'
+import { CSSProperties } from './css-properties'
+import {
+    HTMLComponents,
+    SVGComponents,
+} from './built-in-component-factories'
+import {
+  GlamorousOptions,
+  PropsAreCssOverridesGlamorousOptions,
+} from './glamorous'
+import {
+  KeyGlamorousComponentFactory,
+  KeyGlamorousComponentFactoryCssOverides
+} from './component-factory'
+
+export interface HTMLBuiltInComponentFactory<Key extends keyof HTMLComponents> {
+  <ExternalProps, Context = object, DefaultProps extends object = object>(
+    component: Key,
+    options?: Partial<GlamorousOptions<ExternalProps, Context, DefaultProps>>,
+  ): KeyGlamorousComponentFactory<
+    React.HTMLProps<HTMLComponents[Key]>,
+    CSSProperties,
+    ExternalProps,
+    DefaultProps
+  >
+  <ExternalProps, Context = object, DefaultProps extends object = object>(
+    component: Key,
+    options?: PropsAreCssOverridesGlamorousOptions<ExternalProps, Context, DefaultProps>,
+  ): KeyGlamorousComponentFactoryCssOverides<
+    React.HTMLProps<HTMLComponents[Key]>,
+    CSSProperties,
+    ExternalProps,
+    DefaultProps
+  >
+}
+export interface SVGBuiltInComponentFactory<Key extends keyof SVGComponents> {
+  <ExternalProps, Context = object, DefaultProps extends object = object>(
+    component: Key,
+    options?: Partial<GlamorousOptions<ExternalProps, Context, DefaultProps>>,
+  ): KeyGlamorousComponentFactory<
+    React.SVGAttributes<SVGComponents[Key]>,
+    SVGProperties,
+    ExternalProps,
+    DefaultProps
+  >
+  <ExternalProps, Context = object, DefaultProps extends object = object>(
+    component: Key,
+    options?: PropsAreCssOverridesGlamorousOptions<ExternalProps, Context, DefaultProps>,
+  ): KeyGlamorousComponentFactoryCssOverides<
+    React.SVGAttributes<SVGComponents[Key]>,
+    SVGProperties,
+    ExternalProps,
+    DefaultProps
+  >
+}
+
+export interface HTMLDomTagComponentFactories extends
+  HTMLBuiltInComponentFactory<'a'>,
+  HTMLBuiltInComponentFactory<'abbr'>,
+  HTMLBuiltInComponentFactory<'address'>,
+  HTMLBuiltInComponentFactory<'area'>,
+  HTMLBuiltInComponentFactory<'article'>,
+  HTMLBuiltInComponentFactory<'aside'>,
+  HTMLBuiltInComponentFactory<'audio'>,
+  HTMLBuiltInComponentFactory<'b'>,
+  HTMLBuiltInComponentFactory<'base'>,
+  HTMLBuiltInComponentFactory<'bdi'>,
+  HTMLBuiltInComponentFactory<'bdo'>,
+  HTMLBuiltInComponentFactory<'big'>,
+  HTMLBuiltInComponentFactory<'blockquote'>,
+  HTMLBuiltInComponentFactory<'body'>,
+  HTMLBuiltInComponentFactory<'br'>,
+  HTMLBuiltInComponentFactory<'button'>,
+  HTMLBuiltInComponentFactory<'canvas'>,
+  HTMLBuiltInComponentFactory<'caption'>,
+  HTMLBuiltInComponentFactory<'cite'>,
+  HTMLBuiltInComponentFactory<'code'>,
+  HTMLBuiltInComponentFactory<'col'>,
+  HTMLBuiltInComponentFactory<'colgroup'>,
+  HTMLBuiltInComponentFactory<'data'>,
+  HTMLBuiltInComponentFactory<'datalist'>,
+  HTMLBuiltInComponentFactory<'dd'>,
+  HTMLBuiltInComponentFactory<'del'>,
+  HTMLBuiltInComponentFactory<'details'>,
+  HTMLBuiltInComponentFactory<'dfn'>,
+  HTMLBuiltInComponentFactory<'dialog'>,
+  HTMLBuiltInComponentFactory<'div'>,
+  HTMLBuiltInComponentFactory<'dl'>,
+  HTMLBuiltInComponentFactory<'dt'>,
+  HTMLBuiltInComponentFactory<'em'>,
+  HTMLBuiltInComponentFactory<'embed'>,
+  HTMLBuiltInComponentFactory<'fieldset'>,
+  HTMLBuiltInComponentFactory<'figcaption'>,
+  HTMLBuiltInComponentFactory<'figure'>,
+  HTMLBuiltInComponentFactory<'footer'>,
+  HTMLBuiltInComponentFactory<'form'>,
+  HTMLBuiltInComponentFactory<'h1'>,
+  HTMLBuiltInComponentFactory<'h2'>,
+  HTMLBuiltInComponentFactory<'h3'>,
+  HTMLBuiltInComponentFactory<'h4'>,
+  HTMLBuiltInComponentFactory<'h5'>,
+  HTMLBuiltInComponentFactory<'h6'>,
+  HTMLBuiltInComponentFactory<'head'>,
+  HTMLBuiltInComponentFactory<'header'>,
+  HTMLBuiltInComponentFactory<'hgroup'>,
+  HTMLBuiltInComponentFactory<'html'>,
+  HTMLBuiltInComponentFactory<'i'>,
+  HTMLBuiltInComponentFactory<'iframe'>,
+  HTMLBuiltInComponentFactory<'img'>,
+  HTMLBuiltInComponentFactory<'input'>,
+  HTMLBuiltInComponentFactory<'ins'>,
+  HTMLBuiltInComponentFactory<'kbd'>,
+  HTMLBuiltInComponentFactory<'keygen'>,
+  HTMLBuiltInComponentFactory<'label'>,
+  HTMLBuiltInComponentFactory<'legend'>,
+  HTMLBuiltInComponentFactory<'li'>,
+  HTMLBuiltInComponentFactory<'link'>,
+  HTMLBuiltInComponentFactory<'main'>,
+  HTMLBuiltInComponentFactory<'map'>,
+  HTMLBuiltInComponentFactory<'mark'>,
+  HTMLBuiltInComponentFactory<'menu'>,
+  HTMLBuiltInComponentFactory<'menuitem'>,
+  HTMLBuiltInComponentFactory<'meta'>,
+  HTMLBuiltInComponentFactory<'meter'>,
+  HTMLBuiltInComponentFactory<'nav'>,
+  HTMLBuiltInComponentFactory<'noscript'>,
+  HTMLBuiltInComponentFactory<'object'>,
+  HTMLBuiltInComponentFactory<'ol'>,
+  HTMLBuiltInComponentFactory<'optgroup'>,
+  HTMLBuiltInComponentFactory<'option'>,
+  HTMLBuiltInComponentFactory<'output'>,
+  HTMLBuiltInComponentFactory<'p'>,
+  HTMLBuiltInComponentFactory<'param'>,
+  HTMLBuiltInComponentFactory<'picture'>,
+  HTMLBuiltInComponentFactory<'pre'>,
+  HTMLBuiltInComponentFactory<'progress'>,
+  HTMLBuiltInComponentFactory<'q'>,
+  HTMLBuiltInComponentFactory<'rp'>,
+  HTMLBuiltInComponentFactory<'rt'>,
+  HTMLBuiltInComponentFactory<'ruby'>,
+  HTMLBuiltInComponentFactory<'s'>,
+  HTMLBuiltInComponentFactory<'samp'>,
+  HTMLBuiltInComponentFactory<'script'>,
+  HTMLBuiltInComponentFactory<'section'>,
+  HTMLBuiltInComponentFactory<'select'>,
+  HTMLBuiltInComponentFactory<'small'>,
+  HTMLBuiltInComponentFactory<'source'>,
+  HTMLBuiltInComponentFactory<'span'>,
+  HTMLBuiltInComponentFactory<'strong'>,
+  HTMLBuiltInComponentFactory<'style'>,
+  HTMLBuiltInComponentFactory<'sub'>,
+  HTMLBuiltInComponentFactory<'table'>,
+  HTMLBuiltInComponentFactory<'tbody'>,
+  HTMLBuiltInComponentFactory<'td'>,
+  HTMLBuiltInComponentFactory<'textarea'>,
+  HTMLBuiltInComponentFactory<'tfoot'>,
+  HTMLBuiltInComponentFactory<'th'>,
+  HTMLBuiltInComponentFactory<'thead'>,
+  HTMLBuiltInComponentFactory<'time'>,
+  HTMLBuiltInComponentFactory<'title'>,
+  HTMLBuiltInComponentFactory<'tr'>,
+  HTMLBuiltInComponentFactory<'textarea'>,
+  HTMLBuiltInComponentFactory<'tfoot'>,
+  HTMLBuiltInComponentFactory<'th'>,
+  HTMLBuiltInComponentFactory<'thead'>,
+  HTMLBuiltInComponentFactory<'time'>,
+  HTMLBuiltInComponentFactory<'title'>,
+  HTMLBuiltInComponentFactory<'tr'>,
+  HTMLBuiltInComponentFactory<'track'>,
+  HTMLBuiltInComponentFactory<'u'>,
+  HTMLBuiltInComponentFactory<'ul'>,
+  HTMLBuiltInComponentFactory<'var'>,
+  HTMLBuiltInComponentFactory<'video'>
+  {}
+
+export interface SVGDomTagComponentFactories extends
+  SVGBuiltInComponentFactory<'circle'>,
+  SVGBuiltInComponentFactory<'clipPath'>,
+  SVGBuiltInComponentFactory<'defs'>,
+  SVGBuiltInComponentFactory<'ellipse'>,
+  SVGBuiltInComponentFactory<'g'>,
+  SVGBuiltInComponentFactory<'image'>,
+  SVGBuiltInComponentFactory<'line'>,
+  SVGBuiltInComponentFactory<'linearGradient'>,
+  SVGBuiltInComponentFactory<'mask'>,
+  SVGBuiltInComponentFactory<'path'>,
+  SVGBuiltInComponentFactory<'pattern'>,
+  SVGBuiltInComponentFactory<'polygon'>,
+  SVGBuiltInComponentFactory<'polyline'>,
+  SVGBuiltInComponentFactory<'radialGradient'>,
+  SVGBuiltInComponentFactory<'rect'>,
+  SVGBuiltInComponentFactory<'stop'>,
+  SVGBuiltInComponentFactory<'svg'>,
+  SVGBuiltInComponentFactory<'text'>,
+  SVGBuiltInComponentFactory<'tspan'>
+  {}

@@ -5,15 +5,21 @@
 import * as React from 'react'
 import {
   HTMLComponentFactory,
+  HTMLComponents,
   HTMLKey,
   SVGComponentFactory,
+  SVGComponents,
   SVGKey,
 } from './built-in-component-factories'
 import {
-  GlamorousComponent,
+  HTMLDomTagComponentFactories,
+  SVGDomTagComponentFactories,
+} from './dom-tag-component-factories'
+import {
   ExtraGlamorousProps,
-  WithComponent,
-  WithProps,
+  WithComponent, WithProps,
+  ComponentFactoryGlamorous,
+  ComponentGlamorous,
 } from './glamorous-component'
 import {
   BuiltInGlamorousComponentFactory,
@@ -49,14 +55,16 @@ export {
   SVGProperties,
   SVGPropertiesCompleteSingle, SVGPropertiesComplete, SVGPropertiesLossy,
 
-  GlamorousComponent,
   ExtraGlamorousProps,
-  WithComponent,
-  WithProps,
+  WithComponent, WithProps,
+  ComponentFactoryGlamorous,
+  ComponentGlamorous,
 
   StyleFunction,
   StyleArray,
   StyleArgument,
+
+  Omit,
 
   BuiltInGlamorousComponentFactory,
   KeyGlamorousComponentFactory,
@@ -65,9 +73,14 @@ export {
   GlamorousComponentFactoryCssOverides,
 
   HTMLComponentFactory,
+  HTMLComponents,
   HTMLKey,
   SVGComponentFactory,
+  SVGComponents,
   SVGKey,
+
+  HTMLDomTagComponentFactories,
+  SVGDomTagComponentFactories,
 }
 
 export interface GlamorousOptions<Props, Context, DefaultProps> {
@@ -92,14 +105,9 @@ export interface PropsAreCssOverridesGlamorousOptions<Props, Context, DefaultPro
 
 export type Component<T> = React.ComponentClass<T> | React.StatelessComponent<T>
 
+type GlamorousProps = { className?: string }
 
-type OmitInternals<
-  Props extends { className?: string, theme?: object }
-> = Omit<Props, "className" | "theme">
-
-type GlamorousProps = { className?: string, theme?: object }
-
-export interface GlamorousInterface extends HTMLComponentFactory, SVGComponentFactory {
+export interface GlamorousInterface {
   // # Glamarous Component factories
   
   // Two overloads are needed per shape due to a union return of CSSProperties | SVGProperties
@@ -127,32 +135,6 @@ export interface GlamorousInterface extends HTMLComponentFactory, SVGComponentFa
 
   // ## create a component factory from a dom tag
 
-  <ExternalProps, Context = object, DefaultProps extends object = object>(
-    component: HTMLKey,
-    options?: Partial<GlamorousOptions<ExternalProps, Context, DefaultProps>>,
-  ): KeyGlamorousComponentFactory<
-    HTMLComponentFactory[HTMLKey], CSSProperties, ExternalProps, DefaultProps
-  >
-  <ExternalProps, Context = object, DefaultProps extends object = object>(
-    component: SVGKey,
-    options?: Partial<GlamorousOptions<ExternalProps, Context, DefaultProps>>,
-  ): KeyGlamorousComponentFactory<
-    SVGComponentFactory[SVGKey], SVGProperties, ExternalProps, DefaultProps
-  >
-
-  <ExternalProps, Context = object, DefaultProps extends object = object>(
-    component: HTMLKey,
-    options?: PropsAreCssOverridesGlamorousOptions<ExternalProps, Context, DefaultProps>,
-  ): KeyGlamorousComponentFactoryCssOverides<
-    HTMLComponentFactory[HTMLKey], CSSProperties, ExternalProps, DefaultProps
-  >
-  <ExternalProps, Context = object, DefaultProps extends object = object>(
-    component: SVGKey,
-    options?: PropsAreCssOverridesGlamorousOptions<ExternalProps, Context, DefaultProps>,
-  ): KeyGlamorousComponentFactoryCssOverides<
-    SVGComponentFactory[SVGKey], SVGProperties, ExternalProps, DefaultProps
-  >
-
   Div: React.StatelessComponent<CSSProperties & ExtraGlamorousProps>
   Svg: React.StatelessComponent<SVGProperties & ExtraGlamorousProps>
 }
@@ -175,6 +157,11 @@ export function withTheme<Props extends { theme: any }>(
   Omit<Props, "theme">
 >
 
-declare const glamorous: GlamorousInterface
+declare const glamorous:
+  & HTMLComponentFactory
+  & SVGComponentFactory
+  & GlamorousInterface
+  & HTMLDomTagComponentFactories
+  & SVGDomTagComponentFactories
 
 export default glamorous
